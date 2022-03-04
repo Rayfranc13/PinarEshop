@@ -1,6 +1,7 @@
 const express=require('express')
 const cors=require('cors')
 const {dbConnection}=require('../db/configdb')
+const router=require('../routes')
 
 
 
@@ -13,6 +14,7 @@ class Server{
         this.port=process.env.PORT
         this.ConectarDB()
         this.Middlewares()
+        this.Routes()
         this.Listen()
     }
 
@@ -26,9 +28,13 @@ await dbConnection()
         this.app.use(cors())
     }
 
+    Routes(){
+this.app.use(router)
+    }
+
     Listen(){
     this.app.listen(this.port||5000,()=>{
-        console.log(`Server on port ${this.port}`)
+        console.log(`Servidor en el puerto ${this.port}`)
     })
     }
 
