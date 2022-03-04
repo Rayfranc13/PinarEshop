@@ -29,7 +29,8 @@ await dbConnection()
     }
 
     Routes(){
-this.app.use(router)
+        this.app.use(require('../routes/auth'))
+   this.app.use(require('../routes/usuario'))
     }
 
     Listen(){
