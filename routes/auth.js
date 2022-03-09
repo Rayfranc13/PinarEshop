@@ -3,6 +3,7 @@ const {check}=require('express-validator')
 const { logIn, singUp } = require('../controllers/auth');
 const { validarCampos } = require('../middlewares/validar_campos');
 const { existUserByEmail} = require('../middlewares/existe_usuario');
+const {existeCorreo}=require('../helpers/db_validator')
 const router=Router()
 
 router.post('/login',[
