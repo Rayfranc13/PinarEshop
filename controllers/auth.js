@@ -19,9 +19,9 @@ return res.json({
 
 }
 
-const singUp= (req,res)=>{
+const  singUp= async(req,res)=>{
     const {nombre,apellido,correo,password,rol,telefono}=req.body
-    const exist=Usuario.find({correo})
+    const exist= await Usuario.find({correo})
     if(exist){
         res.json({
             msg:'El correo ya esta registrado'
