@@ -38,6 +38,7 @@ router.post(
   "/",
   [
     validarToken,
+    isAdmin,
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
     check("nombre", "El nombre no puede ser un numero").isString(),
     check("apellido", "El apellido es obligatorio").not().isEmpty(),
