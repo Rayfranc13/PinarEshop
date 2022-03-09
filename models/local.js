@@ -16,3 +16,5 @@ ref:'Usuario',
 require:true
     }
 })
+
+module.exports=model('Local',LocalSchema)
