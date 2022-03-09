@@ -33,6 +33,7 @@ await dbConnection()
     Routes(){
         this.app.use('/auth',require('../routes/auth'))
    this.app.use('/usuario',require('../routes/usuario'))
+   this.app.use('/local',require('../routes/local'))
     }
 
     Listen(){
