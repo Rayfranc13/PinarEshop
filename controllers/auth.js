@@ -22,7 +22,7 @@ return res.json({
 
 const  singUp= async(req,res)=>{
     const {nombre,apellido,correo,password,rol,telefono}=req.body
-    const exist= await Usuario.find({correo})
+    const exist= await Usuario.findOne({correo})
     if(exist){
         console.log(exist)
         return res.json({
