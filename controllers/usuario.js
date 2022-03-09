@@ -21,7 +21,7 @@ const cant= await Usuario.countDocuments({estado:true})
 
 
 const postUsuario=async (req=request,res=response)=>{
-    const {nombre,apellido,correo,password, rol,telefono}=req.body
+    const {nombre,apellido,correo,password,rol,telefono}=req.body
     const usuario=new Usuario({nombre,apellido,correo,rol,telefono})
     const salt =bcrypt.genSaltSync()
 
@@ -39,7 +39,7 @@ const postUsuario=async (req=request,res=response)=>{
     }
     return res.json(
     {
-        message:'El usuario se ah insertado',
+        message:'El usuario se ha insertado',
         usuario
     }
 )

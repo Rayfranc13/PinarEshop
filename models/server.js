@@ -22,6 +22,8 @@ class Server{
 await dbConnection()
     }
 
+    
+    
     Middlewares(){
         this.app.use(express.urlencoded({extended:false}))
         this.app.use(express.json())

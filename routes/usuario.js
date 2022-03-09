@@ -1,4 +1,4 @@
-const { Router } = require("express");
+const { Router } =require("express");
 const { check } = require("express-validator");
 const {
   getUsuarios,
@@ -37,6 +37,7 @@ router.get('/perfil',[
 router.post(
   "/",
   [
+    validarToken,
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
     check("nombre", "El nombre no puede ser un numero").isString(),
     check("apellido", "El apellido es obligatorio").not().isEmpty(),
@@ -50,7 +51,8 @@ router.post(
       "password",
       "El password deve tener al menos 6 caracteres"
     ).isStrongPassword(),
-    check("rol", "No es un rol valido").isIn(["ADMIN_ROLE", "USER_ROLE"]),
+    check("rol", "No es un rol valido").isIn(["ADMIN_ROLE", "VENDEDOR_ROLE",'CLIENT_ROLE']),
+    check('telefono',"El telefono no es valido").isMobilePhone(),
     validarCampos,
   ],
   postUsuario

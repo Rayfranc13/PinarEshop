@@ -11,7 +11,25 @@ router.post('/login',[
     validarCampos,
     existUserByEmail
 ],logIn);
-router.post('/signup',singUp)
+
+router.post('/signup',[
+    check("nombre", "El nombre es obligatorio").not().isEmpty(),
+    check("nombre", "El nombre no puede ser un numero").isString(),
+    check("apellido", "El apellido es obligatorio").not().isEmpty(),
+    check("apellido", "El apellido no puede ser un numero").isString(),
+    check("correo", "El correo no es valido").isEmail(),
+    check("correo").custom(existeCorreo),
+    check("password", "El password deve tener al menos 6 caracteres").isLength({
+      min: 6,
+    }),
+    check(
+      "password",
+      "El password deve tener al menos 6 caracteres"
+    ).isStrongPassword(),
+    check("rol", "No es un rol valido").isIn(["VENDEDOR_ROLE",'CLIENT_ROLE']),
+    check('telefono',"El telefono no es valido").isMobilePhone(),
+    validarCampos,
+],singUp)
 
 
 
