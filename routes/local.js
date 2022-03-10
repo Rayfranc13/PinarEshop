@@ -6,7 +6,8 @@ const { validarToken } = require("../middlewares/validarToken");
 const router=Router()
 
 router.get('/',[
-    validarToken
+    validarToken,
+    localPermisos
 ],getLocal)
 
 router.post('/',[
