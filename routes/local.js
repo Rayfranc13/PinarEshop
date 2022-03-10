@@ -16,12 +16,12 @@ router.post('/',[
 ],
 postLocal)
 
-router.put('/',[
+router.put('/:id',[
     validarToken,
     localPermisos
 ],putLocal)
 
-router.delete('/',[
+router.delete('/:id',[
     validarToken,
     localPermisos
 ],deleteLocal)
