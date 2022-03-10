@@ -3,7 +3,7 @@ const Local=require('../models/local')
 
 
 const getLocal=(req,res)=>{
-    const {id:_id}=req.usuario
+    const {_id:id}=req.usuario
     
     return res.json({
         msg:'Implementar get',
