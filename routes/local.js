@@ -10,11 +10,21 @@ router.get('/',[
     localPermisos
 ],getLocal)
 
-router.post('/',postLocal)
+router.post('/',[
+    validarToken,
+    localPermisos
+],
+postLocal)
 
-router.put('/',putLocal)
+router.put('/',[
+    validarToken,
+    localPermisos
+],putLocal)
 
-router.delete('/',deleteLocal)
+router.delete('/',[
+    validarToken,
+    localPermisos
+],deleteLocal)
 
 
 
