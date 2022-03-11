@@ -12,6 +12,7 @@ const getLocal=(req,res)=>{
 }
 
 const postLocal=(req,res)=>{
+    const {nombre}=req.body
 return res.json({
     msg:'Implementar post'
 }
