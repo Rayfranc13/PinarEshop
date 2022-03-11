@@ -8,7 +8,7 @@ const getLocal=(req,res)=>{
 
     return res.json({
         msg:'Implementar get',
-        usuario
+        local
     })
 }
 
