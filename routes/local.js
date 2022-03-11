@@ -7,7 +7,7 @@ const router=Router()
 
 router.get('/',[
     validarToken,
-   
+   localPermisos
 ],getLocal)
 
 router.post('/',[

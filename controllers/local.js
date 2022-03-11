@@ -7,8 +7,7 @@ const getLocal=async(req,res)=>{
     const local= await Local.find({usuario:usuario})
 
     return res.json({
-        msg:'Implementar get',
-        local
+        locales:local
     })
 }
 
