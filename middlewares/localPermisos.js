@@ -7,6 +7,7 @@ const localPermisos=(req,res,next)=>{
     const roles=['ADMIN_ROLE','VENDEDOR_ROLE']
 const {rol}=req.usuario
 for (x in roles){
+    console.log(x==rol,x,rol)
     if(x==rol){
         return next()
     }
