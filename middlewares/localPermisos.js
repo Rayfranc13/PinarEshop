@@ -9,12 +9,14 @@ const {rol}=req.usuario
 roles.map(x=>{
     console.log(x==rol,x,rol)
     if(x==rol){
-    return next
+    return next()
     }
-    return res.status(401).json({
+})
+    
+return res.status(401).json({
         msg:'No tiene acceso a esta accion'
     })
-})
+
 }
 
 
