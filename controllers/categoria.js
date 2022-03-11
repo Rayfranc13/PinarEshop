@@ -26,7 +26,7 @@ try{
 
     return res.json(
         {
-            message:'El usuario se ha insertado',
+            message:'La categoria se ha insertado',
             categoria
         })
 }
