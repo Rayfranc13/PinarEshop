@@ -36,11 +36,11 @@ const putCategoria=async(req,res)=>{
     const {...data}=req.body
  const categoria= await Categoria.findByIdAndUpdate(id,data)
  res.json({
-     message:'El usuario se ha eliminado con exito',
+     message:'La Categoria se ha actualizado con exito',
      categoria
  })
     }
-    
+
 
     const deleteCategoria=async(req,res)=>{
         const {id}=req.params
