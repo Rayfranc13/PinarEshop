@@ -32,16 +32,22 @@ try{
 }
 
 const putCategoria=async(req,res)=>{
-    const categorias=await Categoria.find()
-      res.json({
-        msg:'si'
-    })
+    const {id}=req.params
+    const {...data}=req.body
+ const categoria= await Categoria.findByIdAndUpdate(id,data)
+ res.json({
+     message:'El usuario se ha eliminado con exito',
+     categoria
+ })
     }
+    
 
     const deleteCategoria=async(req,res)=>{
-        const categorias=await Categoria.find()
-          res.json({
-            msg:'no'
+        const {id}=req.params
+        const categoria= await Categoria.findByIdAndDelete(id)
+        res.json({
+            message:'La categoria se ha eliminado con exito',
+            categoria
         })
         }
 
