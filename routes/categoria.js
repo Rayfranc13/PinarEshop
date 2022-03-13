@@ -2,16 +2,19 @@ const {Router}=require('express')
 const {check}=require('express-validator')
 const {validarToken}=require('../middlewares/validarToken')
 const { validarCampos } = require("../middlewares/validar_campos");
-const {getCategoria,postCategoria,putCategoria,deleteCategoria}=require('../controllers/categoria')
+const {getCategoria,postCategoria,putCategoria,deleteCategoria}=require('../controllers/categoria');
+const { isAdmin } = require('../middlewares/permisos');
 const router=Router()
 
 router.get('/',[
-    validarToken
+    validarToken,
+    isAdmin
 ],getCategoria)
 
 
 router.post('/',[
     validarToken,
+    isAdmin,
     check('nombre','El nombre es obligatorio').not().isEmpty(),
     validarCampos
 ],postCategoria)
@@ -19,6 +22,7 @@ router.post('/',[
 
 router.put('/:id',[
     validarToken,
+    isAdmin,
     check('id','El id no es valido').isMongoId(),
     check('nombre','El nombre es obligatorio').not().isEmpty(),
     validarCampos
@@ -27,6 +31,7 @@ router.put('/:id',[
 
 router.delete('/:id',[
     validarToken,
+    isAdmin,
     check('id','El id no es valido').isMongoId(),
     validarCampos
 ],deleteCategoria)
