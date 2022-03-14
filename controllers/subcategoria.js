@@ -3,7 +3,7 @@ const Subcategoria=require('../models/subcategoria')
 
 const getSubcategoria=async(req,res)=>{
 const subcategorias=await Subcategoria.find()
-.populate('Categoria')
+.populate('categoria','nombre')
   res.json({
     subcategorias
 })
