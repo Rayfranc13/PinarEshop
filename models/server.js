@@ -35,6 +35,7 @@ await dbConnection()
    this.app.use('/usuario',require('../routes/usuario'))
    this.app.use('/local',require('../routes/local'))
    this.app.use('/categoria',require('../routes/categoria'))
+   this.app.use('/subcategoria',require('../routes/subcategoria'))
     }
 
     Listen(){

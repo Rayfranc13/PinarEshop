@@ -1,5 +1,6 @@
 const Usuario=require('../models/usuario')
 const Categoria=require('../models/categoria')
+const Subcategoria=require('../models/subcategoria')
 const existeCorreo=async(correo='')=>{
 const existe= await Usuario.findOne({correo})
 if(existe){
@@ -8,7 +9,7 @@ if(existe){
 }
 
 
-
+//Categorias helpers
 const existeCategoriaByNombre=async(nomb)=>{
     const nombre=nomb.toUpperCase()
   const categoria= await Categoria.findOne({nombre:nombre})
@@ -24,6 +25,22 @@ const existeCategoriaById=async(id)=>{
     }
 }
 
+
+//Subcategorias helpers
+const existeSubcategoriaByNombre=async(nomb)=>{
+    const nombre=nomb.toUpperCase()
+  const subcategoria= await Subcategoria.findOne({nombre:nombre})
+  if(subcategoria){
+      throw new Error(`La subcategoria ${nombre} ya existe`)
+  }     
+}
+
+const existeSubcategoriaById=async(id)=>{
+    const subcategoria=await Subcategoria.findById({_id:id})
+    if(!subcategoria){
+        throw new Error(`La subcategoria de id(${id}) no existe`)
+    }
+}
 
 const existeUsuarioById=async(id)=>{
     const existe= await Usuario.findOne({_id:id})
@@ -46,5 +63,7 @@ module.exports={
     existeUsuarioById,
     existeActiveUsuarioById,
     existeCategoriaById,
-    existeCategoriaByNombre
+    existeCategoriaByNombre,
+    existeSubcategoriaByNombre,
+    existeSubcategoriaById
 }
