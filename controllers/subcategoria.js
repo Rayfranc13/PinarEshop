@@ -15,7 +15,7 @@ const categoria=req.body.categoria
 const subcategoria=new Subcategoria({nombre,categoria})
 
 try{
-    await categoria.save();
+    await subcategoria.save();
     }
     catch(e){
     res.status(400).json({
