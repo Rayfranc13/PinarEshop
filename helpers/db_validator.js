@@ -11,7 +11,7 @@ if(existe){
 
 const existeCategoriaByNombre=async(nomb)=>{
     const nombre=nomb.toUpperCase()
-  const categoria= await Categoria.findOne({nombre})
+  const categoria= await Categoria.findOne({nombre:nombre})
   if(categoria){
       throw new Error(`La categoria ${nombre} ya existe`)
   }     
