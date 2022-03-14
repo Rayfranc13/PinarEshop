@@ -9,7 +9,7 @@ const categorias=await Categoria.find()
 }
 
 const postCategoria=async(req,res)=>{
-const {nombre}=req.body
+const nombre=req.body.nombre.toUpperCase()
 const categoria=new Categoria({nombre})
 
 try{
