@@ -17,7 +17,7 @@ router.post('/',[
     validarToken,
     isAdmin,
     check('nombre','El nombre es obligatorio').not().isEmpty(),
-    check('nombre').custom(existeCategoriaById),
+    check('nombre').custom(existeCategoriaByNombre),
     validarCampos
 ],postCategoria)
 
