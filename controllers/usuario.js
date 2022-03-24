@@ -56,7 +56,7 @@ if(password){
     rest.password=bcrypt.hashSync(password,salt)
 }
 
-const usuario=await Usuario.findByIdAndUpdate(id,rest)
+const usuario=await Usuario.findByIdAndUpdate(id,rest,password)
 
 res.json({
     message:'El usuario se ha actualizado con exito',

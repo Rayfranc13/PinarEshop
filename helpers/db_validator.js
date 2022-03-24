@@ -1,12 +1,13 @@
-const Usuario=require('../models/usuario')
-const Categoria=require('../models/categoria')
-const Subcategoria=require('../models/subcategoria')
-const existeCorreo=async(correo='')=>{
-const existe= await Usuario.findOne({correo})
-if(existe){
-    throw new Error('El correo ya esta registrado')
-}
-}
+const {
+    MunicipioSchema:Municipio,
+    UsuarioSchema:Usuario,
+    CategoriaSchema:Categoria,
+    SubcategoriaSchema:Subcategoria
+}=require('../models')
+
+
+
+
 
 
 //Categorias helpers
@@ -42,6 +43,7 @@ const existeSubcategoriaById=async(id)=>{
     }
 }
 
+//Usuarios Helpers
 const existeUsuarioById=async(id)=>{
     const existe= await Usuario.findOne({_id:id})
     if(!existe){
@@ -56,6 +58,28 @@ const existeUsuarioById=async(id)=>{
         }
         }
 
+        const existeCorreo=async(correo='')=>{
+            const existe= await Usuario.findOne({correo})
+            if(existe){
+                throw new Error('El correo ya esta registrado')
+            }
+            }
+
+   //Municipios Helpers
+   const existeMunicipioByName=async(nombre)=>{
+    const nomb=nombre.toUpperCase()
+    const municipio= await Municipio.findOne({nombre:nomb})
+    if(municipio){
+        throw new Error(`El municipio ${nomb} ya existe`)
+    }     
+   }
+
+   const existeMunicipioById=async(id)=>{
+    const existe= await Municipio.findOne({_id:id})
+    if(!existe){
+        throw new Error(`El municipio de id(${id}) no existe`)
+    }
+   }
    
 
 module.exports={
@@ -65,5 +89,7 @@ module.exports={
     existeCategoriaById,
     existeCategoriaByNombre,
     existeSubcategoriaByNombre,
-    existeSubcategoriaById
+    existeSubcategoriaById,
+    existeMunicipioByName,
+    existeMunicipioById
 }

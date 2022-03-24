@@ -18,6 +18,25 @@ const ProductoSchema=Schema({
         type:Schema.Types.ObjectId,
         ref:'Subcategoria',
         require:true
+    },
+    disponible:{
+        type:Boolean,
+        default:true,
+        require:true
+    },
+    precio:{
+        type:Number,
+        require:true
+    },
+    cant:{
+        type:Number,
+        default:0,
+        require:true
+    },
+    usuario:{
+        type:Schema.Types.ObjectId,
+        ref:'Usuario',
+        require:true
     }
    
 })

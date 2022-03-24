@@ -1,7 +1,7 @@
 const jwt=require('jsonwebtoken')
 
 const  bcrypt=require('bcryptjs')
-const Usuario=require('../models/usuario')
+const {UsuarioSchema:Usuario}=require('../models')
 
 
 const logIn=async(req,res)=>{

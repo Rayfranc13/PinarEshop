@@ -2,44 +2,44 @@ const {Router}=require('express')
 const {check}=require('express-validator')
 const {validarToken}=require('../middlewares/validarToken')
 const { validarCampos } = require("../middlewares/validar_campos");
-const {getCategoria,postCategoria,putCategoria,deleteCategoria}=require('../controllers/categoria');
 const { isAdmin } = require('../middlewares/permisos');
-const { existeCategoriaById,existeCategoriaByNombre } = require('../helpers/db_validator');
+const {existeMunicipioByName,existeMunicipioById } = require('../helpers/db_validator');
 const adminVendPermisos = require('../middlewares/localPermisos');
+const { getMunicipio, postMunicipio, putMunicipio, deleteMunicipio } = require('../controllers/municipio');
 const router=Router()
 
 router.get('/',[
     validarToken,
-],getCategoria)
+],getMunicipio)
 
 
 router.post('/',[
     validarToken,
     adminVendPermisos,
     check('nombre','El nombre es obligatorio').not().isEmpty(),
-    check('nombre').custom(existeCategoriaByNombre),
+    check('nombre').custom(existeMunicipioByName),
     validarCampos
-],postCategoria)
+],postMunicipio)
 
 
 router.put('/:id',[
     validarToken,
     adminVendPermisos,
     check('id','El id no es valido').isMongoId(),
-    check('id').custom(existeCategoriaById),
+    check('id').custom(existeMunicipioById),
     check('nombre','El nombre es obligatorio').not().isEmpty(),
-    check('nombre').custom(existeCategoriaByNombre),
+    check('nombre').custom(existeMunicipioByName),
     validarCampos
-],putCategoria)
+],putMunicipio)
 
 
 router.delete('/:id',[
     validarToken,
     isAdmin,
     check('id','El id no es valido').isMongoId(),
-    check('id').custom(existeCategoriaById),
+    check('id').custom(existeMunicipioById),
     validarCampos
-],deleteCategoria)
+],deleteMunicipio)
 
 
 module.exports=router

@@ -1,6 +1,5 @@
 const Subcategoria=require('../models/subcategoria')
 
-
 const getSubcategoria=async(req,res)=>{
 const subcategorias=await Subcategoria.find()
 .populate('categoria','nombre')
@@ -35,8 +34,9 @@ try{
 
 const putSubcategoria=async(req,res)=>{
     const {id}=req.params
-    const {...data}=req.body
- const subcategoria= await Subcategoria.findByIdAndUpdate(id,data)
+    const {nombre}=req.body.nombre.toUpperCase()
+
+ const subcategoria= await Subcategoria.findByIdAndUpdate(id,{nombre:nombre})
  res.json({
      message:'La subcategoria se ha actualizado con exito',
      subcategoria

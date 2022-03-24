@@ -1,5 +1,6 @@
 const express=require('express')
 const cors=require('cors')
+const fileUpload=require('express-fileupload')
 const {dbConnection}=require('../db/configdb')
 const router=require('../routes')
 
@@ -28,14 +29,19 @@ await dbConnection()
         this.app.use(express.urlencoded({extended:false}))
         this.app.use(express.json())
         this.app.use(cors())
+        this.app.use(fileUpload({
+            useTempFiles:true,
+            tempFileDir:'/temp/'
+        }))
     }
 
     Routes(){
         this.app.use('/auth',require('../routes/auth'))
-   this.app.use('/usuario',require('../routes/usuario'))
-   this.app.use('/local',require('../routes/local'))
-   this.app.use('/categoria',require('../routes/categoria'))
-   this.app.use('/subcategoria',require('../routes/subcategoria'))
+   .use('/usuario',require('../routes/usuario'))
+   .use('/categoria',require('../routes/categoria'))
+   .use('/subcategoria',require('../routes/subcategoria'))
+   .use('/municipio',require('../routes/municipio'))
+   .use('/producto',require('../routes/producto'))
     }
 
     Listen(){
