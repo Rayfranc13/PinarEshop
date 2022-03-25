@@ -19,6 +19,11 @@ const postProducto=async(req,res)=>{
         const imag=await subirArchivo(req.files)
         prod.imag=imag
     }catch(error){
+        if(error=='La extencion no es permitida, jpg,png,jpeg'){
+            return res.status(400).json({
+                error
+            })
+        }
        console.log(error)
     }
 

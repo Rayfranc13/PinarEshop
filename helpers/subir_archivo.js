@@ -1,9 +1,11 @@
 const path=require('path')
 const {v4:uuid}=require('uuid')
+const cloudinary=require('cloudinary').v2
+cloudinary.config(process.env.CLOUDINARY_URL)
 
 const subirArchivo=async(files,extencionesValidas=['jpg','png','jpeg'])=>{
     
-   return new Promise((resolve,reject)=>{
+   return new Promise(async(resolve,reject)=>{
     
     if (!files || Object.keys(files).length === 0|| !files.imag) {
         return reject('No files were uploaded.');
@@ -16,19 +18,29 @@ const extencion=nombreCortado[nombreCortado.length-1]
 
  
 if(!extencionesValidas.includes(extencion)){
-    return reject(`La extencion ${extencion} no es permitida, ${extencionesValidas}`)
+    return reject(`La extencion no es permitida, ${extencionesValidas}`)
 }
     const nombTemp=uuid()+'.'+extencion
-  uploadPath = path.join(__dirname, '../uploads/' , nombTemp)
-
-  imag.mv(uploadPath, function(err) {
-    if (err) {
-        console.log(err)
-      return reject(err);
+  //uploadPath = path.join(__dirname, '../uploads/' , nombTemp)
+   const {tempFilePath}=imag
+   imag.name=nombTemp
+   try{
+      const data=await cloudinary.uploader.upload(tempFilePath)
+      
+      resolve(data.secure_url)
+    }catch(error){
+      reject(error)
     }
 
-    return resolve(uploadPath);
-  });
+
+  // imag.mv(uploadPath, function(err) {
+  //   if (err) {
+  //       console.log(err)
+  //     return reject(err);
+  //   }
+
+  //   return resolve(uploadPath);
+  // });
 
     })
     
