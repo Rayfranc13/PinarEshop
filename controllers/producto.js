@@ -41,8 +41,22 @@ const postProducto=async(req,res)=>{
         producto
     })
 }
-
+const deleteProducto=async(req,res)=>{
+const {_id}=req.params
+try{
+    const producto=await Producto.findByIdAndDelete(_id)
+    res.json({
+        msg:'El producto se ha eliminado',
+        producto
+    })
+}catch(error){
+    res.status(500).json({
+        msg:'Error al eliminar'
+    })
+}
+}
 module.exports={
     getProducto,
     postProducto,
+    deleteProducto
 }

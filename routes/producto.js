@@ -5,7 +5,7 @@ const { validarCampos } = require("../middlewares/validar_campos");
 const { isAdmin } = require('../middlewares/permisos');
 const { existeCategoriaById,existeCategoriaByNombre, existeSubcategoriaById } = require('../helpers/db_validator');
 const adminVendPermisos = require('../middlewares/localPermisos');
-const { getProducto, postProducto } = require('../controllers/producto');
+const { getProducto, postProducto, deleteProducto } = require('../controllers/producto');
 const router=Router()
 
 router.get('/',[
@@ -25,6 +25,14 @@ router.post('/',[
     check('cant','La cantidad es un numero entero').isInt(),
     validarCampos
 ],postProducto)
+
+
+router.delete('/:id',[
+    validarToken,
+    adminVendPermisos,
+    check('id','El id no es valido').isMongoId(),
+    validarCampos
+],deleteProducto)
 
 
 
