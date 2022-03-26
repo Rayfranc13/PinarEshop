@@ -1,4 +1,5 @@
 const path=require('path')
+const fs=require('fs')
 const {v4:uuid}=require('uuid')
 const cloudinary=require('cloudinary').v2
 cloudinary.config(process.env.CLOUDINARY_URL)
@@ -26,7 +27,7 @@ if(!extencionesValidas.includes(extencion)){
    imag.name=nombTemp
    try{
       const data=await cloudinary.uploader.upload(tempFilePath)
-      
+      fs.unlink(tempFilePath)
       resolve(data.secure_url)
     }catch(error){
       reject(error)
