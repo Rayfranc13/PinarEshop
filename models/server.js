@@ -32,7 +32,7 @@ await dbConnection()
         this.app.use(express.static('public'))
         this.app.use(fileUpload({
             useTempFiles:true,
-           // tempFileDir:'/temp/'
+            tempFileDir:'/temp/'
         }))
     }
 
