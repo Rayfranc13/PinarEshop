@@ -12,7 +12,7 @@ const subirArchivo=async(files,extencionesValidas=['jpg','png','jpeg'])=>{
         ;
     }
     const {imag} = files;
-
+console.log(imag)
 const nombreCortado=imag.name.split('.')
 const extencion=nombreCortado[nombreCortado.length-1]
 
