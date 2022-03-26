@@ -29,6 +29,7 @@ await dbConnection()
         this.app.use(express.urlencoded({extended:false}))
         this.app.use(express.json())
         this.app.use(cors())
+        this.app.use(express.static('public'))
         this.app.use(fileUpload({
             useTempFiles:true,
             tempFileDir:'/temp/'
@@ -36,12 +37,13 @@ await dbConnection()
     }
 
     Routes(){
-        this.app.use('/auth',require('../routes/auth'))
-   .use('/usuario',require('../routes/usuario'))
-   .use('/categoria',require('../routes/categoria'))
-   .use('/subcategoria',require('../routes/subcategoria'))
-   .use('/municipio',require('../routes/municipio'))
-   .use('/producto',require('../routes/producto'))
+        this.app.use('/v2/auth',require('../routes/auth'))
+        .use('/',require('../routes/home'))
+   .use('/v2/usuario',require('../routes/usuario'))
+   .use('/v2/categoria',require('../routes/categoria'))
+   .use('/v2/subcategoria',require('../routes/subcategoria'))
+   .use('/v2/municipio',require('../routes/municipio'))
+   .use('/v2/producto',require('../routes/producto'))
     }
 
     Listen(){
