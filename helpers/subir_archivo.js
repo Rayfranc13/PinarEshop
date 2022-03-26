@@ -27,7 +27,10 @@ if(!extencionesValidas.includes(extencion)){
    imag.name=nombTemp
    try{
       const data=await cloudinary.uploader.upload(tempFilePath)
-      fs.unlink(tempFilePath)
+      fs.unlink(tempFilePath,(err) => {
+        if (err) throw err;
+        console.log('path/file.txt was deleted')
+      })
       resolve(data.secure_url)
     }catch(error){
       reject(error)
